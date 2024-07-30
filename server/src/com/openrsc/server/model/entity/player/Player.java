@@ -2453,7 +2453,7 @@ public final class Player extends Mob {
 
 	public long processIncomingPackets() {
 		return getWorld().getServer().bench(() -> {
-			if (!channel.isOpen() && !channel.isWritable()) {
+			if (channel == null || (!channel.isOpen() && !channel.isWritable())) {
 				return;
 			}
 			synchronized (incomingPackets) {
