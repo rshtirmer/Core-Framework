@@ -171,8 +171,8 @@ public class Duel implements ContainerListener {
 	public void dropOnDeath() {
 		DeathLog log = new DeathLog(player, duelRecipient, true);
 		Player duelOpponent = getDuelRecipient();
-		duelRecipient.getUpdateFlags().setDamage(new Damage(targetPlayer, targetPlayer.getSkills().getLevel(Skill.HITS.id()) - targetPlayer.getSkills().getMaxStat(Skill.HITS.id())));
-		duelRecipient.getSkills().normalize(Skill.HITS.id());
+		duelOpponent.getUpdateFlags().setDamage(new Damage(duelOpponent, duelOpponent.getSkills().getLevel(Skill.HITS.id()) - duelOpponent.getSkills().getMaxStat(Skill.HITS.id())));
+		duelOpponent.getSkills().normalize(Skill.HITS.id());
 		synchronized(getDuelOffer().getItems()) {
 			for (Item item : getDuelOffer().getItems()) {
 				Item affectedItem = player.getCarriedItems().getInventory().get(
