@@ -804,6 +804,10 @@ public final class Player extends Mob {
 	}
 
 	public boolean canLogout() {
+		if (getDuel().isDuelActive()) {
+			return false;
+		}
+
 		if (menuHandler != null) {
 			return true;
 		}
