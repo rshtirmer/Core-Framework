@@ -35,7 +35,7 @@ public class WalkRequest implements PayloadProcessor<WalkStruct, OpcodeIn> {
 					player.setSuspiciousPlayer(true, "walk request null opponent");
 					return;
 				}
-				if (opponent.getHitsMade() >= 3) {
+				if (opponent.getHitsMade() >= 0) {
 					if (player.getDuel().isDuelActive() && player.getDuel().getDuelSetting(0)) {
 						player.message("You cannot retreat from this duel!");
 						return;
@@ -77,7 +77,7 @@ public class WalkRequest implements PayloadProcessor<WalkStruct, OpcodeIn> {
 						player.getWorld().getServer().getPluginHandler().handlePlugin(EscapeNpcTrigger.class, player, new Object[]{player, ((Npc) opponent)});
 					}
 				} else {
-					player.message("You can't retreat during the first 3 rounds of combat");
+					player.message("You can't retreat from a duel!");
 					return;
 				}
 			} else {
