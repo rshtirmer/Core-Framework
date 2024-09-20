@@ -1464,10 +1464,12 @@ public class DoorAction {
 	// replaces but does not notify the player of the action
 	private void replaceGameObject(final int newID, final boolean open,
 								   final Player player, final GameObject object) {
-		player.getWorld().replaceGameObject(object,
-			new GameObject(object.getWorld(), object.getLocation(), newID, object
-				.getDirection(), object.getType()));
-		player.playSound(open ? "opendoor" : "closedoor");
+		if (object.getID() != 64) {
+			player.getWorld().replaceGameObject(object,
+				new GameObject(object.getWorld(), object.getLocation(), newID, object
+					.getDirection(), object.getType()));
+			player.playSound(open ? "opendoor" : "closedoor");
+		}
 	}
 
 	// replaces and notifies player on action taken
