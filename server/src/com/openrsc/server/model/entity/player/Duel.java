@@ -5,6 +5,8 @@ import com.openrsc.server.model.container.ContainerListener;
 import com.openrsc.server.model.container.Item;
 import com.openrsc.server.model.container.ItemContainer;
 import com.openrsc.server.model.entity.GroundItem;
+import com.openrsc.server.model.entity.update.Damage;
+import com.openrsc.server.constants.Skill;
 import com.openrsc.server.net.rsc.ActionSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -169,6 +171,8 @@ public class Duel implements ContainerListener {
 	public void dropOnDeath() {
 		DeathLog log = new DeathLog(player, duelRecipient, true);
 		Player duelOpponent = getDuelRecipient();
+		duelRecipient.getUpdateFlags().setDamage(new Damage(targetPlayer, targetPlayer.getSkills().getLevel(Skill.HITS.id()) - targetPlayer.getSkills().getMaxStat(Skill.HITS.id())));
+		duelRecipient.getSkills().normalize(Skill.HITS.id());
 		synchronized(getDuelOffer().getItems()) {
 			for (Item item : getDuelOffer().getItems()) {
 				Item affectedItem = player.getCarriedItems().getInventory().get(
