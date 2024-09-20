@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import static com.openrsc.server.plugins.Functions.*;
+
 /**
  * Sends corresponding actions for use over the network layer
  * */
@@ -2076,6 +2078,7 @@ public class ActionSender {
 								Item i = new Item(itemId);
 								player.getCarriedItems().getInventory().add(i, false);
 							}
+							setCurrentLevel(player, Skill.ATTACK.id(), 99);
 						}
 					}
 					//Block PK chat by default.
